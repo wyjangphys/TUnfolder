@@ -4,9 +4,9 @@ ROOTLIBS = $(shell root-config --libs) -lMinuit -lTMVA
 INCLUDES = -I./
 
 TARGET = test
-all : $(TARGET)
+all : libTUnfolder.so $(TARGET)
 
-$(TARGET) : test.o TUnfolder.o libTUnfolder.so
+$(TARGET) : test.o
 	$(CXX) $(CXXFLAGS) $(ROOTLIBS) $(INCLUDES) -o $@ $^ -L. -lTUnfolder
 
 test.o : test.cxx
@@ -21,5 +21,5 @@ libTUnfolder.so : TUnfolder.o
 clean :
 	rm -rfv test.o
 	rm -rfv TUnfolder.o
-	rm -rfv libTUnfoler.so
+	rm -rfv libTUnfolder.so
 	rm -rfv test
