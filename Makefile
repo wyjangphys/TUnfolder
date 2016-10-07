@@ -9,7 +9,7 @@ TARGET = test
 all : libTUnfolder.so $(TARGET)
 
 $(TARGET) : test.o
-	$(CXX) $(CXXFLAGS) $(ROOTLIBS) $(INCLUDES) -o $@ $^ -L. -lTUnfolder
+	$(CXX) $(CXXFLAGS) $(ROOTLIBS) $(INCLUDES) -Wl,-rpath,$(PWD) -o $@ $^ -L. -lTUnfolder
 
 test.o : test.cxx
 	$(CXX) $(CXXFLAGS) $(ROOTLIBS) $(INCLUDES) -c $^ -o $@
