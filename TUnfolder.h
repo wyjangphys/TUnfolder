@@ -10,5 +10,6 @@ class TUnfolder
     TUnfolder();
     ~TUnfolder();
     void ShowInfo();
+    void GenerateTestTree(const char* outputFileName);
 };
 #endif
