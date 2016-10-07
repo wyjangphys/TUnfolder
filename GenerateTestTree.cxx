@@ -32,10 +32,14 @@ void TUnfolder::GenerateTestTree(const char* outputFileName)
   TF1 fTrue("fTrue", "TMath::Gaus(x, [0], [1])", -3, 3);
   fTrue.SetParameter(0, x_true_mean);
   fTrue.SetParameter(1, x_true_std);
+  fTrue.SetTitle("Probability density function for true event generation");
+  fTrue.SetLineColor(kRed);
 
   TF1 fMeasured("fMeasured", "TMath::Gaus(x, [0], [1])", -3, 3);
   fMeasured.SetParameter(0, x_measured_mean);
   fMeasured.SetParameter(1, x_measured_std);
+  fMeasured.SetTitle("Probability density function for measured event generation");
+  fMeasured.SetLineColor(kBlue);
 
   TH2F hResponse("hResponse", "Response Matrix", nBinsX, xMin, xMax, nBinsY, yMin, yMax);
   UNFOUT << "Generating test data ... ";
@@ -50,6 +54,8 @@ void TUnfolder::GenerateTestTree(const char* outputFileName)
   std::cout << "DONE" << std::endl;
 
   hResponse.Write();
+  fTrue.Write();
+  fMeasured.Write();
   if( fOutput.Write() ) UNFOUT << "Test data generated at " << fOutput.GetName() << std::endl;
   fOutput.Close();
 }
